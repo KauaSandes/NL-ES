@@ -1,0 +1,18 @@
+{
+  "id_paciente": "PID-008901",
+  "data_coleta": "2025-09-25",
+  "dados_demograficos": {
+    "idade": 31,
+    "sexo": "M",
+    "localidade": {
+      "bairro": "Jardim América",
+      "cidade": "Goiânia"
+    }
+  },
+  "resultados_hemograma": {
+    "hemoglobina_g_dl": 14.8,
+    "hematocrito_percent": 44.1,
+    "vcm_fl": 91.2,
+    "rdw_cv_percent": 12.9
+  }
+}

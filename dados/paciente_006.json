@@ -1,0 +1,18 @@
+{
+  "id_paciente": "PID-006789",
+  "data_coleta": "2025-09-25",
+  "dados_demograficos": {
+    "idade": 29,
+    "sexo": "M",
+    "localidade": {
+      "bairro": "Setor Bueno",
+      "cidade": "Goiânia"
+    }
+  },
+  "resultados_hemograma": {
+    "hemoglobina_g_dl": 15.1,
+    "hematocrito_percent": 45.3,
+    "vcm_fl": 89.5,
+    "rdw_cv_percent": 13.8
+  }
+}

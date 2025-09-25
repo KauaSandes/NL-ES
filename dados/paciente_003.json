@@ -1,0 +1,18 @@
+{
+  "id_paciente": "PID-003456",
+  "data_coleta": "2025-09-22",
+  "dados_demograficos": {
+    "idade": 55,
+    "sexo": "F",
+    "localidade": {
+      "bairro": "Parque Amazônia",
+      "cidade": "Goiânia"
+    }
+  },
+  "resultados_hemograma": {
+    "hemoglobina_g_dl": 10.8,
+    "hematocrito_percent": 32.1,
+    "vcm_fl": 75.5,
+    "rdw_cv_percent": 17.2
+  }
+}

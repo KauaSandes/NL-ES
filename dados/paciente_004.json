@@ -1,0 +1,18 @@
+{
+  "id_paciente": "PID-004567",
+  "data_coleta": "2025-09-23",
+  "dados_demograficos": {
+    "idade": 33,
+    "sexo": "M",
+    "localidade": {
+      "bairro": "Setor Oeste",
+      "cidade": "Goiânia"
+    }
+  },
+  "resultados_hemograma": {
+    "hemoglobina_g_dl": 14.2,
+    "hematocrito_percent": 42.8,
+    "vcm_fl": 92.0,
+    "rdw_cv_percent": 13.1
+  }
+}
