@@ -17,7 +17,7 @@ Uma área é classificada como **"ÁREA DE ALERTA NUTRICIONAL"** quando atende A
 
 ## 🔧 Requisitos
 
-- Python 3.6+
+- Python 3.10+
 - Pandas
 - Arquivos JSON com dados de hemogramas
 
