@@ -1,0 +1,182 @@
+[
+  {
+    "id_paciente": "PID-100001",
+    "data_coleta": "2024-01-15",
+    "dados_demograficos": {
+      "idade": 45,
+      "sexo": "F",
+      "localidade": {
+        "bairro": "Jardim América",
+        "cidade": "Goiânia"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 13.2,
+      "hematocrito_percent": 40.1,
+      "vcm_fl": 88.5,
+      "rdw_cv_percent": 14.2
+    }
+  },
+  {
+    "id_paciente": "PID-100002",
+    "data_coleta": "2024-02-20",
+    "dados_demograficos": {
+      "idade": 62,
+      "sexo": "M",
+      "localidade": {
+        "bairro": "Setor Central",
+        "cidade": "Anápolis"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 11.8,
+      "hematocrito_percent": 36.5,
+      "vcm_fl": 82.3,
+      "rdw_cv_percent": 16.8
+    }
+  },
+  {
+    "id_paciente": "PID-100003",
+    "data_coleta": "2024-03-10",
+    "dados_demograficos": {
+      "idade": 28,
+      "sexo": "F",
+      "localidade": {
+        "bairro": "Vila Brasília",
+        "cidade": "Aparecida de Goiânia"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 14.1,
+      "hematocrito_percent": 42.3,
+      "vcm_fl": 86.7,
+      "rdw_cv_percent": 13.1
+    }
+  },
+  {
+    "id_paciente": "PID-100004",
+    "data_coleta": "2024-04-05",
+    "dados_demograficos": {
+      "idade": 71,
+      "sexo": "M",
+      "localidade": {
+        "bairro": "Centro",
+        "cidade": "Rio Verde"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 10.9,
+      "hematocrito_percent": 33.8,
+      "vcm_fl": 79.2,
+      "rdw_cv_percent": 17.5
+    }
+  },
+  {
+    "id_paciente": "PID-100005",
+    "data_coleta": "2024-05-12",
+    "dados_demograficos": {
+      "idade": 35,
+      "sexo": "F",
+      "localidade": {
+        "bairro": "Vila São José",
+        "cidade": "Luziânia"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 12.8,
+      "hematocrito_percent": 38.5,
+      "vcm_fl": 85.0,
+      "rdw_cv_percent": 14.8
+    }
+  },
+  {
+    "id_paciente": "PID-100006",
+    "data_coleta": "2024-06-18",
+    "dados_demograficos": {
+      "idade": 52,
+      "sexo": "M",
+      "localidade": {
+        "bairro": "Setor Sul",
+        "cidade": "Aguas Lindas de Goiás"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 13.7,
+      "hematocrito_percent": 41.2,
+      "vcm_fl": 87.1,
+      "rdw_cv_percent": 15.4
+    }
+  },
+  {
+    "id_paciente": "PID-100007",
+    "data_coleta": "2024-07-25",
+    "dados_demograficos": {
+      "idade": 19,
+      "sexo": "F",
+      "localidade": {
+        "bairro": "Vila Operária",
+        "cidade": "Valparaíso de Goiás"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 14.5,
+      "hematocrito_percent": 43.1,
+      "vcm_fl": 89.3,
+      "rdw_cv_percent": 12.7
+    }
+  },
+  {
+    "id_paciente": "PID-100008",
+    "data_coleta": "2024-08-30",
+    "dados_demograficos": {
+      "idade": 68,
+      "sexo": "M",
+      "localidade": {
+        "bairro": "Vila Rica",
+        "cidade": "Trindade"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 11.3,
+      "hematocrito_percent": 34.7,
+      "vcm_fl": 80.8,
+      "rdw_cv_percent": 16.2
+    }
+  },
+  {
+    "id_paciente": "PID-100009",
+    "data_coleta": "2024-09-14",
+    "dados_demograficos": {
+      "idade": 42,
+      "sexo": "F",
+      "localidade": {
+        "bairro": "Vila Boa Vista",
+        "cidade": "Formosa"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 13.9,
+      "hematocrito_percent": 42.0,
+      "vcm_fl": 88.1,
+      "rdw_cv_percent": 13.9
+    }
+  },
+  {
+    "id_paciente": "PID-100010",
+    "data_coleta": "2024-10-20",
+    "dados_demograficos": {
+      "idade": 33,
+      "sexo": "M",
+      "localidade": {
+        "bairro": "Vila Romana",
+        "cidade": "Caldas Novas"
+      }
+    },
+    "resultados_hemograma": {
+      "hemoglobina_g_dl": 14.8,
+      "hematocrito_percent": 44.2,
+      "vcm_fl": 90.5,
+      "rdw_cv_percent": 12.4
+    }
+  }
+]

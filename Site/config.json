@@ -1,0 +1,227 @@
+{
+  "system": {
+    "name": "Sistema de Vigilância de Saúde Pública - RDW Goiás",
+    "version": "1.0.0",
+    "author": "MiniMax Agent",
+    "description": "Sistema de monitoramento epidemiológico do RDW para a população do estado de Goiás"
+  },
+  "rdw": {
+    "reference_values": {
+      "normal_min": 11.5,
+      "normal_max": 14.5,
+      "elevated_max": 16.0,
+      "unit": "%"
+    },
+    "risk_levels": {
+      "normal": {
+        "min": 11.5,
+        "max": 14.5,
+        "color": "#10B981",
+        "label": "Normal",
+        "description": "RDW dentro dos valores normais"
+      },
+      "elevated": {
+        "min": 14.5,
+        "max": 16.0,
+        "color": "#F59E0B",
+        "label": "Elevado",
+        "description": "RDW moderadamente elevado, requer monitoramento"
+      },
+      "high": {
+        "min": 16.0,
+        "max": 25.0,
+        "color": "#EF4444",
+        "label": "Muito Elevado",
+        "description": "RDW muito elevado, requer investigação clínica"
+      }
+    }
+  },
+  "demographics": {
+    "age_groups": [
+      { "range": "0-17", "label": "0-17 anos" },
+      { "range": "18-29", "label": "18-29 anos" },
+      { "range": "30-44", "label": "30-44 anos" },
+      { "range": "45-59", "label": "45-59 anos" },
+      { "range": "60-74", "label": "60-74 anos" },
+      { "range": "75+", "label": "75+ anos" }
+    ],
+    "sex_labels": {
+      "M": "Masculino",
+      "F": "Feminino"
+    }
+  },
+  "goias": {
+    "state": "Goiás",
+    "country": "Brasil",
+    "population_2025": 7420000,
+    "capital": {
+      "name": "Goiânia",
+      "population": 1500000
+    },
+    "major_cities": [
+      { "name": "Goiânia", "population": 1500000 },
+      { "name": "Anápolis", "population": 400000 },
+      { "name": "Aparecida de Goiânia", "population": 550000 },
+      { "name": "Rio Verde", "population": 350000 },
+      { "name": "Luziânia", "population": 200000 },
+      { "name": "Aguas Lindas de Goiás", "population": 200000 },
+      { "name": "Valparaíso de Goiás", "population": 180000 },
+      { "name": "Trindade", "population": 130000 },
+      { "name": "Formosa", "population": 120000 },
+      { "name": "Caldas Novas", "population": 95000 }
+    ],
+    "coordinates": {
+      "center": { "lat": -16.5, "lng": -49.5 },
+      "bounds": {
+        "southwest": [-20.0, -53.0],
+        "northeast": [-14.0, -46.0]
+      }
+    }
+  },
+  "visualization": {
+    "map": {
+      "default_zoom": 7,
+      "mobile_zoom": 6,
+      "marker_size_base": 10,
+      "marker_size_max": 50,
+      "tile_provider": "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+    },
+    "charts": {
+      "colors": {
+        "primary": "#0057FF",
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "error": "#EF4444",
+        "neutral": "#6B7280"
+      },
+      "animation_duration": 300,
+      "responsive": true,
+      "maintain_aspect_ratio": false
+    },
+    "ui": {
+      "theme": "glassmorphism",
+      "backdrop_blur": 24,
+      "border_radius": {
+        "small": 8,
+        "medium": 12,
+        "large": 16
+      },
+      "spacing": {
+        "xs": 8,
+        "sm": 12,
+        "md": 16,
+        "lg": 24,
+        "xl": 32,
+        "xxl": 48
+      }
+    }
+  },
+  "data_processing": {
+    "validation": {
+      "required_fields": [
+        "id_paciente",
+        "data_coleta",
+        "dados_demograficos",
+        "resultados_hemograma"
+      ],
+      "data_types": {
+        "id_paciente": "string",
+        "data_coleta": "date",
+        "dados_demograficos": "object",
+        "resultados_hemograma": "object"
+      }
+    },
+    "calculations": {
+      "rdw_average": true,
+      "rdw_percentile": false,
+      "temporal_analysis": true,
+      "geographic_analysis": true,
+      "demographic_analysis": true
+    },
+    "performance": {
+      "max_records": 100000,
+      "batch_size": 1000,
+      "lazy_loading": true,
+      "data_caching": true
+    }
+  },
+  "export": {
+    "formats": ["json", "csv", "pdf"],
+    "include_charts": true,
+    "include_maps": true,
+    "privacy": {
+      "anonymize_ids": true,
+      "remove_coordinates": false,
+      "aggregate_data": true
+    }
+  },
+  "security": {
+    "local_processing": true,
+    "no_external_api": true,
+    "lgpd_compliant": true,
+    "data_retention": "session_only"
+  },
+  "accessibility": {
+    "keyboard_navigation": true,
+    "screen_reader_support": true,
+    "high_contrast": true,
+    "font_scaling": true,
+    "color_blind_friendly": true
+  },
+  "responsive": {
+    "breakpoints": {
+      "mobile": 768,
+      "tablet": 1024,
+      "desktop": 1600
+    },
+    "mobile_optimizations": {
+      "stack_layout": true,
+      "reduce_animations": false,
+      "larger_touch_targets": true,
+      "simplified_navigation": true
+    }
+  },
+  "libraries": {
+    "leaflet": {
+      "version": "1.9.4",
+      "purpose": "Interactive maps"
+    },
+    "chartjs": {
+      "version": "4.4.0",
+      "purpose": "Data visualization"
+    },
+    "inter_font": {
+      "purpose": "Typography"
+    }
+  },
+  "validation_rules": {
+    "rdw_range": {
+      "min": 5.0,
+      "max": 30.0
+    },
+    "age_range": {
+      "min": 0,
+      "max": 120
+    },
+    "date_range": {
+      "min": "2020-01-01",
+      "max": "2025-12-31"
+    },
+    "valid_sex": ["M", "F"],
+    "required_hemogram_fields": ["rdw_cv_percent"]
+  },
+  "statistics": {
+    "default_metrics": [
+      "total_patients",
+      "avg_rdw",
+      "elevated_rdw_percentage",
+      "active_cities"
+    ],
+    "additional_metrics": [
+      "median_rdw",
+      "std_deviation_rdw",
+      "population_coverage",
+      "data_quality_score"
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Vigilância de Saúde Pública - RDW Goiás</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="header-title">Sistema de Vigilância de Saúde Pública</h1>
+                <p class="header-subtitle">Monitoramento RDW - Estado de Goiás</p>
+            </div>
+            <div class="header-right">
+                <div class="upload-section">
+                    <input type="file" id="jsonUpload" accept=".json" class="hidden">
+                    <button class="btn btn-primary" onclick="document.getElementById('jsonUpload').click()">
+                        📊 Upload de Dados
+                    </button>
+                    <button class="btn btn-secondary" onclick="loadSampleData()">
+                        📋 Dados de Exemplo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Overview -->
+    <section class="stats-overview">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalPatients">0</div>
+                <div class="stat-label">Total de Pacientes</div>
+                <div class="stat-change positive" id="patientsChange">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgRDW">0.0%</div>
+                <div class="stat-label">RDW Médio</div>
+                <div class="stat-change" id="rdwChange">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="elevatedRDW">0%</div>
+                <div class="stat-label">RDW Elevado</div>
+                <div class="stat-change" id="elevatedChange">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="activeCities">0</div>
+                <div class="stat-label">Cidades Monitoradas</div>
+                <div class="stat-change" id="citiesChange">-</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <div class="dashboard-grid">
+            <!-- Map Widget -->
+            <div class="widget map-widget" id="mapWidget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Mapa de Calor - RDW por Município</h2>
+                    <div class="widget-controls">
+                        <button class="btn-icon" onclick="refreshMap()">🔄</button>
+                        <button class="btn-icon" onclick="exportMap()">📤</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div id="mapContainer" class="map-container"></div>
+                    <div class="map-legend">
+                        <h4>Níveis de Risco RDW</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color success"></div>
+                                <span>Normal (11.5% - 14.5%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color warning"></div>
+                                <span>Elevado (14.5% - 16%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color error"></div>
+                                <span>Muito Elevado (>16%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City Comparison Chart -->
+            <div class="widget chart-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Comparação RDW entre Cidades</h2>
+                    <div class="widget-controls">
+                        <select class="select" id="cityChartType">
+                            <option value="bar">Barras</option>
+                            <option value="line">Linhas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <canvas id="cityChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Temporal Evolution -->
+            <div class="widget chart-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Evolução Temporal RDW</h2>
+                    <div class="widget-controls">
+                        <select class="select" id="temporalCity">
+                            <option value="Goiânia">Goiânia</option>
+                            <option value="Anápolis">Anápolis</option>
+                            <option value="Aparecida de Goiânia">Aparecida de Goiânia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <canvas id="temporalChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Demographics Analysis -->
+            <div class="widget chart-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Distribuição por Demografia</h2>
+                    <div class="widget-controls">
+                        <select class="select" id="demographicType">
+                            <option value="age">Por Idade</option>
+                            <option value="sex">Por Sexo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <canvas id="demographicChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- RDW Distribution -->
+            <div class="widget chart-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Distribuição de RDW</h2>
+                    <div class="widget-controls">
+                        <button class="btn-icon" onclick="updateDistributionChart()">🔄</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <canvas id="distributionChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Data Summary Table -->
+            <div class="widget table-widget">
+                <div class="widget-header">
+                    <h2 class="widget-title">Resumo por Município</h2>
+                    <div class="widget-controls">
+                        <button class="btn btn-secondary" onclick="exportData()">📊 Exportar</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="table-container">
+                        <table class="data-table" id="municipalityTable">
+                            <thead>
+                                <tr>
+                                    <th>Município</th>
+                                    <th>Pacientes</th>
+                                    <th>RDW Médio</th>
+                                    <th>RDW Elevado (%)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Municipality Details -->
+    <div class="modal" id="municipalityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Detalhes do Município</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-charts">
+                    <canvas id="modalAgeChart"></canvas>
+                    <canvas id="modalSexChart"></canvas>
+                </div>
+                <div class="detail-stats" id="detailStats">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Processando dados...</p>
+    </div>
+
+    <script src="scripts/data-processor.js"></script>
+    <script src="scripts/map-manager.js"></script>
+    <script src="scripts/chart-manager.js"></script>
+    <script src="scripts/ui-manager.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
